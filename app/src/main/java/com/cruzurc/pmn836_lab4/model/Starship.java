@@ -1,7 +1,9 @@
 package com.cruzurc.pmn836_lab4.model;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Starship {
     private String name;
@@ -59,8 +61,31 @@ public class Starship {
 
     public void loadMembers(String fileName){
         File file = new File("assets/data/personnel");
+        try {
+            Scanner scanner = new Scanner(file);
+            CrewMember member;
+            String name = "";
+            String position = "";
+            String title = "";
+            String registry = "";
+            String species = "";
+            String line = "";
+            String[] words = new String[5];
+            while(scanner.hasNextLine()){
+                line = scanner.nextLine();
+                words = line.split(",");
+                name = words[0];
+                position = words[1];
+                title = words[2];
+                registry = words[3];
+                species = words[4];
+                member = new CrewMember(name, position, title, species);
 
-
+            }
+        }
+        catch( FileNotFoundException exception){
+            System.out.println("Your dumbass");
+        }
     }
     @Override
     public String toString(){
