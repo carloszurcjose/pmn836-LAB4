@@ -1,5 +1,6 @@
 package com.cruzurc.pmn836_lab4.model;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Starship {
@@ -54,6 +55,12 @@ public class Starship {
 
     public int getNumberOfPersonnel(){
         return members.size();
+    }
+
+    public void loadMembers(String fileName){
+        File file = new File("assets/data/personnel");
+
+
     }
     @Override
     public String toString(){

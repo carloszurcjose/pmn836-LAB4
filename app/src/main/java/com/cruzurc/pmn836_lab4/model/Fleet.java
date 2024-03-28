@@ -1,6 +1,9 @@
 package com.cruzurc.pmn836_lab4.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Fleet {
     private String name;
@@ -36,6 +39,30 @@ public class Fleet {
     }
 
     public void loadStarships(String dirName){
+        File file = new File("assets/data/fleet.csv");
+        Starship newStarship;
+        String name = "";
+        String registry = "";
+        String starshipClass = "";
+        String line = "";
+        String[] words = new String[3];
+        try {
+            Scanner scanner = new Scanner(file);
+            while(scanner.hasNextLine()){
+                line = scanner.nextLine();
+                words = line.split(",");
+                name = words[0];
+                registry = words[1];
+                starshipClass = words[2];
+                newStarship = new Starship(name, registry, starshipClass, null);
+                addStarship(newStarship);
+
+            }
+
+        }
+        catch (FileNotFoundException exception){
+            System.out.println("You fucked up");
+        }
 
     }
     @Override
