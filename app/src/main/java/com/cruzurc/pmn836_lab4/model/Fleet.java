@@ -38,33 +38,39 @@ public class Fleet {
         starships.add(starship);
     }
 
+
+
     public void loadStarships(String dirName){
-        File file = new File("assets/data/fleet.csv");
-        Starship newStarship;
-        String name = "";
-        String registry = "";
-        String starshipClass = "";
-        String line = "";
-        String[] words = new String[3];
+        File dir = new File(dirName);
         try {
-            Scanner scanner = new Scanner(file);
-            while(scanner.hasNextLine()){
-                line = scanner.nextLine();
-                words = line.split(",");
-                name = words[0];
-                registry = words[1];
-                starshipClass = words[2];
-                newStarship = new Starship(name, registry, starshipClass, null);
-                addStarship(newStarship);
+            for( File file : dir.listFiles()) {
+                Starship newStarship;
+                String name = "";
+                String registry = "";
+                String starshipClass = "";
+                String line = "";
+                String[] words = new String[3];
+                Scanner scanner = new Scanner(file);
+
+                while(scanner.hasNextLine()){
+                    line = scanner.nextLine();
+                    words = line.split(",");
+                    name = words[0];
+                    registry = words[1];
+                    starshipClass = words[2];
+                    newStarship = new Starship(name, registry, starshipClass, null);
+                    newStarship.loadMembers(registry);
+                    starships.add(newStarship);
+                }
 
             }
-
         }
         catch (FileNotFoundException exception){
             System.out.println("You fucked up");
         }
 
     }
+
     @Override
     public String toString(){
         for (Starship starship:getStarships()){
@@ -73,3 +79,4 @@ public class Fleet {
         return "";
     }
 }
+

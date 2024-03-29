@@ -9,13 +9,13 @@ public class Starship {
     private String name;
     private String registry;
     private String classOfStarship;
-    private ArrayList<CrewMember> members = new ArrayList<>();
+    private ArrayList<CrewMember> members;
 
     public Starship(String name, String registry, String classOfStarship, ArrayList<CrewMember> members){
         this.name = name;
         this.registry = registry;
         this.classOfStarship = classOfStarship;
-        this.members = members;
+        this.members = new ArrayList<>();
 
     }
 
@@ -59,8 +59,8 @@ public class Starship {
         return members.size();
     }
 
-    public void loadMembers(String fileName){
-        File file = new File("assets/data/personnel");
+    public void loadMembers(String Registry){
+        File file = new File("personnel/personnel.csv");
         try {
             Scanner scanner = new Scanner(file);
             CrewMember member;
@@ -79,8 +79,10 @@ public class Starship {
                 title = words[2];
                 registry = words[3];
                 species = words[4];
-                member = new CrewMember(name, position, title, species);
-
+                if( registry.equals(Registry)) {
+                    member = new CrewMember(name, position, title, registry, species);
+                    addCrewMember(member);
+                }
             }
         }
         catch( FileNotFoundException exception){

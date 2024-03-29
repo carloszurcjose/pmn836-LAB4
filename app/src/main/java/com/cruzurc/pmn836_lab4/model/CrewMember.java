@@ -61,4 +61,10 @@ public class CrewMember {
     public void setAssignment(String assignment) {
         this.assignment = assignment;
     }
+
+    @Override
+    public String toString() {
+        return getName() + " " + getRank() + " " + getSpecies() + " " + getAssignment();
+    }
 }
+
