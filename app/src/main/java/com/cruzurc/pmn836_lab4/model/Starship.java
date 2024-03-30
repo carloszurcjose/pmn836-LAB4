@@ -1,7 +1,13 @@
 package com.cruzurc.pmn836_lab4.model;
 
+import android.content.res.AssetManager;
+
+import com.cruzurc.pmn836_lab4.MainActivity;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -59,9 +65,12 @@ public class Starship {
         return members.size();
     }
 
-    public void loadMembers(String Registry){
-        File file = new File("personnel/personnel.csv");
+    public void loadMembers(String Registry, MainActivity activity){
+        //File file = new File("personnel/personnel.csv");
+        AssetManager manager = activity.getAssets();
+
         try {
+            InputStream file = manager.open("personnel/personnel.csv");
             Scanner scanner = new Scanner(file);
             CrewMember member;
             String name = "";
@@ -87,6 +96,8 @@ public class Starship {
         }
         catch( FileNotFoundException exception){
             System.out.println("Your dumbass");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
     @Override

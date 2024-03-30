@@ -1,13 +1,21 @@
 package com.cruzurc.pmn836_lab4.model;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+
+import com.cruzurc.pmn836_lab4.MainActivity;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Fleet {
     private String name;
-    private ArrayList<Starship> starships = new ArrayList<>();
+    private ArrayList<Starship> starships;
 
     public Fleet(String name, ArrayList<Starship> starships){
         this.name = name;
@@ -40,35 +48,40 @@ public class Fleet {
 
 
 
-    public void loadStarships(String dirName){
-        File dir = new File(dirName);
+    public void loadStarships(String dirName, MainActivity activity) throws IOException {
+        AssetManager manager = activity.getAssets();
         try {
-            for( File file : dir.listFiles()) {
-                Starship newStarship;
-                String name = "";
-                String registry = "";
-                String starshipClass = "";
-                String line = "";
-                String[] words = new String[3];
-                Scanner scanner = new Scanner(file);
+            String[] fileList = manager.list(dirName);
+            if (fileList != null) {
+                for (String fileName : fileList) {
+                    InputStream file = manager.open(dirName + "/" + fileName);
+                    Starship newStarship;
+                    String name = "";
+                    String registry = "";
+                    String starshipClass = "";
+                    String line = "";
+                    String[] words = new String[3];
+                    Scanner scanner = new Scanner(file);
 
-                while(scanner.hasNextLine()){
-                    line = scanner.nextLine();
-                    words = line.split(",");
-                    name = words[0];
-                    registry = words[1];
-                    starshipClass = words[2];
-                    newStarship = new Starship(name, registry, starshipClass, null);
-                    newStarship.loadMembers(registry);
-                    starships.add(newStarship);
+                    while (scanner.hasNextLine()) {
+                        line = scanner.nextLine();
+                        words = line.split(",");
+                        name = words[0];
+                        registry = words[1];
+                        starshipClass = words[2];
+                        newStarship = new Starship(name, registry, starshipClass, null);
+                        newStarship.loadMembers(registry, activity);
+                        starships.add(newStarship);
+                    }
                 }
-
             }
-        }
-        catch (FileNotFoundException exception){
+
+        } catch (FileNotFoundException except) {
             System.out.println("You fucked up");
         }
-
+        catch(IOException except){
+            System.out.print("No");
+        }
     }
 
     @Override
