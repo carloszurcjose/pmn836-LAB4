@@ -3,6 +3,7 @@ package com.cruzurc.pmn836_lab4.model;
 import android.content.res.AssetManager;
 
 import com.cruzurc.pmn836_lab4.MainActivity;
+import com.cruzurc.pmn836_lab4.StarshipActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -65,7 +66,7 @@ public class Starship {
         return members.size();
     }
 
-    public void loadMembers(String Registry, MainActivity activity){
+    public void loadMembers(String Registry, StarshipActivity activity){
         //File file = new File("personnel/personnel.csv");
         AssetManager manager = activity.getAssets();
 

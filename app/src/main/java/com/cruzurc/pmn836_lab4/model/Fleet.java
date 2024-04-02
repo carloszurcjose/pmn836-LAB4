@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import com.cruzurc.pmn836_lab4.MainActivity;
+import com.cruzurc.pmn836_lab4.StarshipActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -48,7 +49,7 @@ public class Fleet {
 
 
 
-    public void loadStarships(String dirName, MainActivity activity) throws IOException {
+    public void loadStarships(String dirName, StarshipActivity activity) throws IOException {
         AssetManager manager = activity.getAssets();
         try {
             String[] fileList = manager.list(dirName);
