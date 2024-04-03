@@ -1,10 +1,14 @@
 package com.cruzurc.pmn836_lab4;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.cruzurc.pmn836_lab4.databinding.ActivityStarshipBinding;
 import com.cruzurc.pmn836_lab4.model.Fleet;
@@ -32,16 +36,12 @@ public class StarshipActivity extends AppCompatActivity {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        setContentView(view);
 
         String answer = getIntent().getStringExtra("value");
 
-        binding.buttonMakeItChange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.textViewToBeChanged.setText(getIntent().getStringExtra("value"));
-            }
-        });
 
-    }
-}
+
+
+    }}
+
+
