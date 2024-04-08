@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/linear_layout">
+
+    <LinearLayout
+        android:id="@+id/linear_layout_outer"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:text="fdfdasdf">
+
+        <ImageView
+            android:id="@+id/image_view_person"
+            android:layout_width="100sp"
+            android:layout_height="match_parent"
+            tools:src="@drawable/chakotay"/>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_inner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/text_view_top"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:textSize="25dp"
+                tools:text="Commmanding Officer"/>
+
+            <TextView
+                android:id="@+id/text_view_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:textSize="10sp"
+                tools:text="Captain James T. Kirk"/>
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+

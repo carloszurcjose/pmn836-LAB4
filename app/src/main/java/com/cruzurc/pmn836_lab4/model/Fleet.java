@@ -14,9 +14,22 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * @author pmn836 Carlos Cruz
+ * Represents a fleet, a collection of starships under a single name or command.
+ */
+
 public class Fleet {
     private String name;
     private ArrayList<Starship> starships;
+
+    /**
+     * Constructs a Fleet with a specified name and a list of starships.
+     *
+     * @param name The name of the fleet.
+     * @param starships The list of starships in the fleet.
+     */
+
 
     public Fleet(String name, ArrayList<Starship> starships){
         this.name = name;
@@ -39,17 +52,39 @@ public class Fleet {
         this.starships = starships;
     }
 
+    /**
+     * Gets the size of the fleet, i.e., the number of starships in the fleet.
+     *
+     * @return The size of the fleet.
+     */
+
     public int getSizeOfFleet(){
         return starships.size();
     }
+
+    /**
+     * Adds a starship to the fleet.
+     *
+     * @param starship The starship to add to the fleet.
+     */
 
     public void addStarship(Starship starship){
         starships.add(starship);
     }
 
+    /**
+     * Loads starships from assets based on a directory name and the current application context.
+     * This method scans through the specified directory, loading each starship's details and
+     * populating the fleet.
+     *
+     * @param dirName The name of the directory in the assets folder to scan for starship details.
+     * @param activity The current application context.
+     * @throws IOException If there is an error reading from the assets.
+     */
 
 
-    public void loadStarships(String dirName, StarshipActivity activity) throws IOException {
+
+    public void loadStarships(String dirName, Context activity) throws IOException {
         AssetManager manager = activity.getAssets();
         try {
             String[] fileList = manager.list(dirName);
